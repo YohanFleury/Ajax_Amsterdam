@@ -1,0 +1,47 @@
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script>
+var idSelected = -1;
+function mailSelected(id){
+idSelected = id;
+alert("Le mail selectionné est le" + id)
+}
+</script>
+
+
+<h1>Super Gmail</h1>
+<form id="new-email" action="/email" method="post" data-remote="true">
+<button type="submit" class="btn btn-outline-dark" name="test" value="receive">Reçevoir un email</button>
+</form>
+<form id="delete-email" action="/email/3" method="delete" data-remote="true">
+<button type="submit" class="btn btn-danger" name="destroy" value="receive">Supprimer</button>
+</form>
+
+<table id="table" class="table">
+<thead class="thead-dark">
+<tr>
+    <th scope="col"> <h3> Liste des emails </h3> </th>
+    <th scope="col"> <h3> Email sélectionné </h3> </th>
+</tr>
+</thead>
+<tbody id="tbody">
+    <% @emails.each do |email|%>    
+        <tr id="email-list"> 
+             <td id="test"> <h5> <a href="/email/<%=email.id%>" data-remote="true" onclick="mailSelected(<%= email.id%>)"> Objet : <%= email.object%> </a> <h5> </td>
+             <td id="show"> </td>
+        </tr>
+
+    <% end %>
+
+</tbody>  
+</table>
+
+
